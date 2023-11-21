@@ -1,43 +1,36 @@
-import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
-import { Image, StyleSheet, Text, View } from 'react-native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Screen01 from './components/Screen01';
+import Screen02 from './components/Screen02';
+import Screen03 from './components/Screen03';
+import SignUp from './components/SignUp';
 
-import ListProduct from './src/components/ListProduct';
-import { Octicons } from '@expo/vector-icons';
-
-import { Ionicons } from '@expo/vector-icons';
-
-const BottomTab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  
   return (
     <NavigationContainer>
-      <BottomTab.Navigator screenOptions={{headerShown: false, tabBarStyle: {backgroundColor: "#1BA9FF"}}}
-        
-      >
-
-        <BottomTab.Screen name='ChatWithSuplier' component={ChatWithSuplier}
-          
-          options={{
-            title: "",
-            tabBarIcon: ({focused, color})=>{
-            return <Octicons name="three-bars" size={24} color="black" />
-          }}}
+      <Stack.Navigator initialRouteName='Screen01'>
+        <Stack.Screen
+          name='Screen01' component={Screen01}
+          options={{headerShown: false}}
         />
-
-        <BottomTab.Screen name='ListProduct' component={ListProduct}
-          options={{
-            title: "",
-            tabBarIcon: ({focused, color})=>{
-              return <Octicons name="home" size={24} color="black" />
-            }
-          }}
+        <Stack.Screen
+          name='Screen02' component={Screen02}
+          options={{headerShown: false}}
         />
-        
-        
-      </BottomTab.Navigator>
+        <Stack.Screen
+          name='Screen03' component={Screen03}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name='SignUp'
+          options={{headerShown: false}}
+          component={SignUp}
+        />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
